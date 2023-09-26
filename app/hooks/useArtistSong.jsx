@@ -1,0 +1,38 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+
+const useArtistSong = ( pageNumber, id,query) => {
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const [songs, setSongs] = useState([])
+  const [totalResults, setTotalResults] = useState(0)
+  const [hasMore, setHasMore] = useState(false)
+
+  useEffect(() => {
+    setSongs([])
+  }, [id])
+
+  useEffect(() => {
+    setLoading(false)
+    setError(false)
+    axios
+      .get(`https://saavn.me/artists/${id}/${query}?page=${pageNumber}`)
+      .then((res) => {
+        setSongs((prevSongs) => {
+          return [...prevSongs, ...res.data.data.results]
+        })
+        setHasMore(res.data.data.results.length > 0)
+        setTotalResults(res.data.data.total)
+        setLoading(false)
+      })
+      .catch((e) => {
+        setError(true)
+      })
+  }, [pageNumber, id])
+
+  return { loading, error, songs, hasMore, totalResults }
+}
+
+export default useArtistSong
