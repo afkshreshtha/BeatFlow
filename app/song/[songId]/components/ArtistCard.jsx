@@ -1,31 +1,29 @@
 import React from 'react'
 import { useGetArtistDetailsQuery } from '../../../redux/services/jioSavaanapi'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const ArtistCard = ({ artist }) => {
   const {
     data: artistData,
     isFetching: isFetchingArtistDetails,
   } = useGetArtistDetailsQuery(artist.id)
-
-
-
+  const router = useRouter()
+  // console.log(artistData?.data?.image[2]?.link)
   return (
-    <Link
-      href={{
-        pathname: `/artist/${artistData?.data?.id}`,// the data
-      }}
-    >
-      <div className='mr-4 mt-10'>
+    <>
+      <div className="mr-4 mt-10">
         <img
-        className='rounded-full lg:w-[300px] lg:h-[300px]'
-        src={artistData?.data?.image[2].link}
+          src={artistData?.data?.image[2]?.link}
+          alt=""
+          className=" rounded-full "
+          style={{display:'block'}}
         />
       </div>
       <div>
-        <p className='text-white text-center mt-4'>{artistData?.data?.name}</p>
+        <p className="legend cursor-pointer" onClick={()=>router.push(`/artist/${artist?.id}`)}>{artistData?.data?.name}</p>
       </div>
-    </Link>
+    </>
   )
 }
 

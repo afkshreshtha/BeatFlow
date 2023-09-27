@@ -2,13 +2,17 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
-import { useGetTopSongsDetailsQuery } from '../../redux/services/jioSavaanapi'
+import {
+  useGetArtistDetailsQuery,
+  useGetTopSongsDetailsQuery,
+} from '../../redux/services/jioSavaanapi'
 import Image from 'next/image'
 import { useSongLyrics } from '../../hooks/useSongLyrics'
 import PlayPause from '../../components/PlayPause'
 import { playPause, setActiveSong } from '../../redux/Features/playerSlice'
 import ArtistCard from './components/ArtistCard'
-
+import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
+import { Carousel } from 'react-responsive-carousel'
 const SongDetails = () => {
   const dispatch = useDispatch()
   const { activeSong, isPlaying } = useSelector((state) => state.player)
@@ -17,6 +21,7 @@ const SongDetails = () => {
   const { data } = useGetTopSongsDetailsQuery({
     songid: songId,
   })
+
   const decodeHTMLString = (str) => {
     const decodedString = str?.replace(/&quot;/g, '"')
     return decodedString
@@ -47,7 +52,11 @@ const SongDetails = () => {
 
   const numberWithCommas = formatIndianNumber(data?.data[0]?.playCount)
   const regex = /\d+/g
-  // console.log(data?.data[0])
+  const artistData = [data?.data[0]?.primaryArtists]
+  const firstThreeArtist = artistData?.[0]
+    ?.split(', ')
+    .map((artist) => artist.trim())
+  const artistName = firstThreeArtist?.slice(0, 3)
   return (
     <div className="">
       <div className=" flex bg-[#bbbbb4] justify-center md:justify-start relative ">
@@ -65,7 +74,13 @@ const SongDetails = () => {
         </h1>
         <div className="flex flex-wrap justify-center">
           <span className="text-white">by</span>
-          <p className="text-white ml-2">{data?.data[0]?.primaryArtists}</p>
+          <p className="text-white ml-2">
+            {artistName?.map((artist, i) => (
+              <div key={i} className="flex flex-wrap">
+                <p>{artist}</p>
+              </div>
+            ))}
+          </p>
         </div>
         <div className="flex flex-wrap justify-center items-center text-white">
           <h1>Song . {numberWithCommas} plays</h1>
@@ -94,13 +109,23 @@ const SongDetails = () => {
         {data?.data?.[0].primaryArtistsId !== '' ? (
           <>
             <h1 className="text-white text-3xl mt-14 font-bold">Artists</h1>
-            <div className="flex">
-              {data?.data?.[0].primaryArtistsId &&
-                data?.data?.[0].primaryArtistsId
-                  .match(regex)
-                  .map((artist) => (
-                    <ArtistCard key={artist?.id} artist={{ id: artist }} />
-                  ))}
+
+            <div className="flex justify-center ">
+              <Carousel 
+              showThumbs={false}
+              showIndicators={false}
+              showStatus={false}
+              className='w-[50%] lg:w-[20%] justify-center items-center'
+              // width={"60%"}
+              
+              >
+                {data?.data?.[0].primaryArtistsId &&
+                  data?.data?.[0].primaryArtistsId
+                    .match(regex)
+                    .map((artist) => (
+                      <ArtistCard key={artist?.id} artist={{ id: artist }} />
+                    ))}
+              </Carousel>
             </div>
           </>
         ) : null}
