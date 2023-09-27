@@ -115,7 +115,7 @@ const SongDetails = () => {
               showThumbs={false}
               showIndicators={false}
               showStatus={false}
-              className='w-[50%] lg:w-[20%] justify-center items-center'
+              className='w-[80%] md:w-[50%] lg:w-[20%] justify-center items-center'
               // width={"60%"}
               
               >
