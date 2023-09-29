@@ -84,7 +84,7 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
       }
     }
     fetchLikedSongs()
-  }, [])
+  }, [IslikedSong])
   const handleLikeClick = async (songid) => {
     const user = await supabase.auth.getUser()
     try {
