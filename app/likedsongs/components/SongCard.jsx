@@ -5,15 +5,24 @@ import { useDispatch } from 'react-redux'
 import PlayPause from '../../components/PlayPause'
 import { playPause, setActiveSong } from '../../redux/Features/playerSlice'
 import Image from 'next/image'
-import { AiOutlineDownload } from 'react-icons/ai'
+import { AiFillHeart, AiOutlineDownload, AiOutlineHeart } from 'react-icons/ai'
+import { supabase } from '../../utils/supabase'
 
 const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   const dispatch = useDispatch()
-
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
   const handlePauseClick = () => {
     dispatch(playPause(false))
   }
-
+  useEffect(() => {
+    const fetchSession = async () => {
+      const session = await supabase.auth.getSession()
+      if (session?.data.session === null) {
+        setIsUserLoggedIn(true)
+      }
+    }
+    fetchSession()
+  }, [])
   const handlePlayClick = () => {
     dispatch(setActiveSong({ song, data, i }))
     dispatch(playPause(true))
@@ -75,7 +84,16 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
         >
           <AiOutlineDownload size={20} />
         </div>
-
+        {!isUserLoggedIn && (
+          <div className="text-white mr-2 cursor-pointer">
+            {IslikedSong || a ? (
+              <AiFillHeart onClick={handleLikeSong} />
+            ) : (
+              <AiOutlineHeart onClick={handleClick} />
+            )}
+          </div>
+        )}
+       
       </div>
     </div>
   )

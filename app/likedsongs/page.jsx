@@ -21,13 +21,13 @@ const LikedSongs = () => {
     }
     fetchSession()
   }, [])
-  useEffect(() => {
-    if (isUserLoggedIn) {
-      router.push('/sign-in')
-    } else {
-      router.push('/likedsongs')
-    }
-  }, [isUserLoggedIn,router]);
+  // useEffect(() => {
+  //   if (isUserLoggedIn) {
+  //     router.push('/sign-in')
+  //   } else {
+  //     router.push('/likedsongs')
+  //   }
+  // }, [isUserLoggedIn,router]);
   useEffect(() => {
     async function fetchLikedSongs() {
       try {
