@@ -10,11 +10,16 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 export const metadata = {
   title: "TuneWave",
+  description: `
+  TuneWave is your gateway to a world of music discovery and enjoyment. Explore an extensive library of music, from the latest hits to timeless classics. Whether you're in search of your favorite songs, discovering new artists, or curating playlists, TuneWave has you covered. Immerse yourself in a seamless music experience, and let the rhythm of TuneWave elevate your musical journey.
+Discover, listen, and share your favorite tunes with TuneWave. Join our vibrant community of music enthusiasts and embark on a melodious adventure today.
+  `,
 };
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8"/>
         <meta
           name="google-site-verification"
           content="QibisYWcAxZwed8-_w-2OVseaL58KAxSe7Jb2A6wXLQ"
