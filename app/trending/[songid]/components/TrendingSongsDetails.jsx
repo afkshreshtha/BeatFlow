@@ -23,6 +23,7 @@ const TrendingSongsDetails = ({ song, i, isPlaying, activeSong, data }) => {
       dispatch(playPause(true))
     }
   }
+
   const decodeHTMLString = (str) => {
     const decodedString = str?.replace(/&quot;/g, '"')
     return decodedString
@@ -30,7 +31,6 @@ const TrendingSongsDetails = ({ song, i, isPlaying, activeSong, data }) => {
 
   let str = song?.name
   str = decodeHTMLString(str)
-
   const uploadSong = async (song) => {
     const user = await supabase.auth.getUser()
     const formattedSongs = {
@@ -111,6 +111,16 @@ const TrendingSongsDetails = ({ song, i, isPlaying, activeSong, data }) => {
     }
     fetchSession()
   }, [])
+  const play = localStorage.getItem('playMusic')
+
+  useEffect(() => {
+    if (play !== '1') {
+      // Compare with '1' as a string, assuming '1' means music should be played.
+      localStorage.setItem('playMusic', '1') // Store '1' as a string in localStorage
+      dispatch(setActiveSong({ data,song,  i }))
+      dispatch(playPause(true))
+    }
+  }, [song?.id, play])
 
   return (
     <div className="mt-10 mb-10 flex items-center justify-between mr-4">
@@ -147,7 +157,7 @@ const TrendingSongsDetails = ({ song, i, isPlaying, activeSong, data }) => {
         <div onClick={handleButtonClick} className="cursor-pointer">
           <div className="w-16 h-16 md:w-20 md:h-20">
             <Image
-            unoptimized={true}
+              unoptimized={true}
               src={
                 activeSong?.id === song.id && isPlaying === true
                   ? 'https://th.bing.com/th/id/R.39be84790f16c293e001b26c367e9c87?rik=hkhhkjmeuq4DWg&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f60%2f77%2fnpx4Pk.gif&ehk=LTFLE4ndfMIkZkcS7sW1IJzeJghsooKbl%2fHNBVKsZWM%3d&risl=&pid=ImgRaw&r=0'

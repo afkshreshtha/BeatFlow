@@ -111,6 +111,16 @@ const TrendingSongsDetails = ({ song, i, isPlaying, activeSong, data }) => {
     }
     fetchSession()
   }, [])
+  const play = localStorage.getItem('playMusic')
+
+  useEffect(() => {
+    if (play !== '1') {
+      // Compare with '1' as a string, assuming '1' means music should be played.
+      localStorage.setItem('playMusic', '1') // Store '1' as a string in localStorage
+      dispatch(setActiveSong({ data,song,  i }))
+      dispatch(playPause(true))
+    }
+  }, [song?.id, play])
 
   return (
     <div className="mt-10 mb-10 flex items-center justify-between mr-4">

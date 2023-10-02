@@ -3,7 +3,10 @@ import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 
 import PlayPause from '../../../../components/PlayPause'
-import { playPause, setActiveSong } from '../../../../redux/Features/playerSlice'
+import {
+  playPause,
+  setActiveSong,
+} from '../../../../redux/Features/playerSlice'
 import Image from 'next/image'
 
 const SearchCard = ({ song, isPlaying, activeSong, data, i }) => {
@@ -24,7 +27,10 @@ const SearchCard = ({ song, isPlaying, activeSong, data, i }) => {
   let str = song.name || song.title
   str = decodeHTMLString(str)
   const router = useRouter()
-
+  const setPlayMusic = () => {
+    router.push(`${'/playlist'}/${song.id}`)
+    localStorage.setItem('playMusic', 0)
+  }
   return (
     <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
       <div className="relative w-full h-56 group">
@@ -34,13 +40,7 @@ const SearchCard = ({ song, isPlaying, activeSong, data, i }) => {
               ? 'flex bg-black bg-opacity-70'
               : 'hidden'
           }`}
-          onClick={() =>
-            router.push(
-              `${'/playlist'}/${
-                song.id
-              }`,
-            )
-          }
+          onClick={setPlayMusic}
         >
           <PlayPause
             isPlaying={isPlaying}
@@ -51,7 +51,7 @@ const SearchCard = ({ song, isPlaying, activeSong, data, i }) => {
           />
         </div>
         <Image
-        unoptimized={true}
+          unoptimized={true}
           width={1000}
           height={1000}
           alt="song_img"
@@ -61,7 +61,9 @@ const SearchCard = ({ song, isPlaying, activeSong, data, i }) => {
       </div>
 
       <div className="mt-4 flex flex-col">
-        <p className="font-semibold text-lg text-white truncate">{str}</p>
+        <p className="font-semibold text-lg text-white truncate"
+        onClick={()=>router.push(`${'/playlist'}/${song.id}`)}
+        >{str}</p>
         <p className="text-sm truncate text-gray-300 mt-1">
           {song?.artists?.map((e) => e?.name) || song.subtitle}
         </p>

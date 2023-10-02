@@ -42,6 +42,16 @@ const PlaylistSongsDetails = ({ song, i, isPlaying, activeSong, data }) => {
     uploadSong(song)
     setIsLikedSong(true)
   }
+  const play = localStorage.getItem('playMusic')
+
+  useEffect(() => {
+    if (play !== '1') {
+      // Compare with '1' as a string, assuming '1' means music should be played.
+      localStorage.setItem('playMusic', '1') // Store '1' as a string in localStorage
+      dispatch(setActiveSong({ data,song,  i }))
+      dispatch(playPause(true))
+    }
+  }, [song?.id, play])
 
   useEffect(() => {
     async function fetchLikedSongs() {

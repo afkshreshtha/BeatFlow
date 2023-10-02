@@ -25,6 +25,10 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   let str = song.name || song.title
   str = decodeHTMLString(str)
   const router = useRouter()
+  const setPlayMusic = () => {
+    router.push(`${'playlist'}/${song.id}`)
+    localStorage.setItem('playMusic', 0)
+  }
 
   return (
     <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
@@ -35,7 +39,7 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
               ? 'flex bg-black bg-opacity-70'
               : 'hidden'
           }`}
-          onClick={() => router.push(`${'playlist'}/${song.id}`)}
+          onClick={setPlayMusic}
         >
           <PlayPause
             isPlaying={isPlaying}
@@ -56,7 +60,12 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
       </div>
 
       <div className="mt-4 flex flex-col">
-        <p className="font-semibold text-lg text-white truncate">{str}</p>
+        <p
+          className="font-semibold text-lg text-white truncate"
+          onClick={() => router.push(`${'playlist'}/${song.id}`)}
+        >
+          {str}
+        </p>
         <p className="text-sm truncate text-gray-300 mt-1">{song.subtitle}</p>
       </div>
     </div>
