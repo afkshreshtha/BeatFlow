@@ -16,7 +16,7 @@ const router = useRouter()
     router.refresh()
   }
   return (
-    <div className="flex-1 flex items-center justify-start">
+    <div className="flex-1 flex items-center ">
       <div
         className={`${
           isPlaying && isActive ? 'animate-[spin_3s_linear_infinite]' : ''
@@ -35,11 +35,11 @@ const router = useRouter()
           className="rounded-full"
         />
       </div>
-      <div className="w-[50%] cursor-pointer" onClick={onClick}>
-        <p className="truncate text-white font-bold text-lg">
+      <div className=" cursor-pointer" onClick={onClick}>
+        <p className=" text-white font-bold text-lg">
           {str ? str : 'No active Song'}
         </p>
-        <p className="truncate text-gray-300">
+        <p className=" text-gray-300">
           {activeSong?.subtitle || activeSong?.year
             ? activeSong?.subtitle || activeSong?.year
             : 'No active Song'}
