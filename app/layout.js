@@ -8,14 +8,11 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata = {
-  title: 'TuneWave',
-  description: `Welcome to TuneWave, your ultimate music hub where you can discover a vast collection of music, songs, and talented artists. Explore the latest pop hits, uncover hidden indie gems, and relish timeless classics all in one place.
-
-  With TuneWave, you have access to an extensive music library that caters to all genres and tastes. Whether you're searching for chart-toppers, soul-soothing melodies, or the freshest tracks, we've got you covered. Our user-friendly platform makes music discovery a breeze, helping you curate playlists, create your unique music journey, and share your favorite tunes with friends.
-  
-  Join our thriving community of music enthusiasts, where passion for music knows no bounds. TuneWave is where melodies meet moments, and every click brings you closer to your musical desires.
-  
-  Start your musical adventure today with TuneWave - Your Music Hub!`,
+  title: 'BeatFlow',
+  description: `Welcome to BeatFlow, your ultimate music hub where you can discover a vast collection of music, songs, and talented artists. Explore the latest pop hits, uncover hidden indie gems, and relish timeless classics all in one place.
+  With BeatFlow, you have access to an extensive music library that caters to all genres and tastes. Whether you're searching for chart-toppers, soul-soothing melodies, or the freshest tracks, we've got you covered. Our user-friendly platform makes music discovery a breeze, helping you curate playlists, create your unique music journey, and share your favorite tunes with friends. 
+  Join our thriving community of music enthusiasts, where passion for music knows no bounds. BeatFlow is where melodies meet moments, and every click brings you closer to your musical desires.
+  Start your musical adventure today with BeatFlow - Your Music Hub!`,
 }
 export default function RootLayout({ children }) {
   return (

@@ -24,6 +24,8 @@ const TrendingSongsDetails = ({ song, i, isPlaying, activeSong, data }) => {
     }
   }
 
+    
+
   const decodeHTMLString = (str) => {
     const decodedString = str?.replace(/&quot;/g, '"')
     return decodedString

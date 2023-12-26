@@ -36,6 +36,7 @@ const MobileNav = () => {
       console.log('User is not logged in.')
     }
   }
+  console.log(isUserLoggedIn)
   return (
     <div className="text-white flex  justify-evenly bg-black ">
       <div onClick={() => router.push('/')} className="cursor-pointer">
@@ -54,7 +55,7 @@ const MobileNav = () => {
         <BiLineChart size={30} />
       </div>
       <div
-        onClick={() => router.push('/likedsongs')}
+        onClick={() => router.push(`${isUserLoggedIn ? '/sign-in':'/likedsongs'}`)}
         className="cursor-pointer"
       >
         <AiFillHeart size={30} />
@@ -68,7 +69,7 @@ const MobileNav = () => {
         </div>
       ) : (
         <div
-          onClick={() => router.push('/likedsongs')}
+          onClick={() => router.push('/')}
           className="cursor-pointer"
         >
           <FiLogOut size={30} onClick={handleLogout} />

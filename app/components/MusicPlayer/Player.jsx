@@ -12,6 +12,9 @@ const Player = ({
   repeat,
 }) => {
   const ref = useRef(null)
+
+
+
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
     if (isPlaying) {
@@ -42,6 +45,6 @@ const Player = ({
       onLoadedData={onLoadedData}
     />
   )
-}
+  }
 
 export default Player

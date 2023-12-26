@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import {supabase} from "./utils/supabase.js"
 
+
+
 const Discover = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const [language, setLanguage] = useState("hindi");

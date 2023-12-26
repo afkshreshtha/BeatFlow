@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { supabase } from '../utils/supabase'
@@ -16,7 +16,7 @@ const Login = () => {
     }
     fetchSession()
   }, [])
-console.log(isUserLoggedIn)
+  console.log(isUserLoggedIn)
   useEffect(() => {
     if (!isUserLoggedIn) {
       router.push('/sign-in')
@@ -27,16 +27,16 @@ console.log(isUserLoggedIn)
 
   return (
     <div className="">
-      <Auth  
+      <Auth
         supabaseClient={supabase}
         appearance={{
           theme: ThemeSupa,
-          className:{
-            message:'#fff'
+          className: {
+            message: '#fff',
           },
-          style:{
+          style: {
             message: { color: 'white' },
-          }
+          },
         }}
         theme="dark"
         providers={['discord', 'google']}
