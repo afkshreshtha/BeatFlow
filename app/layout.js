@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content="QibisYWcAxZwed8-_w-2OVseaL58KAxSe7Jb2A6wXLQ"
         />
+        <meta name="google-adsense-account" content="ca-pub-8166123895280023"></meta>
         <meta name="msvalidate.01" content="2AAB175FE4725024647F5D62047BC113" />
       </head>
       <body>
