@@ -110,7 +110,7 @@ const SongDetails = () => {
           <>
             <h1 className="text-white text-3xl mt-14 font-bold">Artists</h1>
 
-            <div className="flex justify-center ">
+            <div className="flex justify-center mb-20 ">
               <Carousel 
               showThumbs={false}
               showIndicators={false}
