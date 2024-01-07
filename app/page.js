@@ -5,9 +5,7 @@ import SongCard from "./components/SongCard";
 import { useGetTopChartsQuery } from "./redux/services/jioSavaanapi";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
-import {supabase} from "./utils/supabase.js"
-
-
+import { supabase } from "./utils/supabase.js";
 
 const Discover = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
@@ -18,20 +16,34 @@ const Discover = () => {
   const handleSelectChange = (e) => {
     setLanguage(e.target.value);
   };
-const [user,setUser] = useState({})
-  useEffect(()=>{
-    const getUserData = async() =>{
-      await supabase.auth.getUser().then((value)=>{
-        if(value.data?.user){
-          
-          setUser(value.data.user)
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const getUserData = async () => {
+      await supabase.auth.getUser().then((value) => {
+        if (value.data?.user) {
+          setUser(value.data.user);
         }
-      })
-    }
-    getUserData()
-  },[])
+      });
+    };
+    getUserData();
+  }, []);
   return (
     <>
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8166123895280023"
+        crossorigin="anonymous"
+      ></script>
+      {/* 1st add  */}
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-8166123895280023"
+        data-ad-slot="5552238212"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       <div className=" flex flex-col">
         <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4">
           <h2 className="font-bold text-3xl text-white text-left">

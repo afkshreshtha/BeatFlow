@@ -33,6 +33,20 @@ export default function RootLayout({ children }) {
         <meta name="msvalidate.01" content="2AAB175FE4725024647F5D62047BC113" />
       </head>
       <body>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8166123895280023"
+          crossorigin="anonymous"
+        ></script>
+        <ins
+          class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-8166123895280023"
+          data-ad-slot="5552238212"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         <h1>
           <div className="relative flex">
             <div className="fixed top-0 left-0 h-full">
